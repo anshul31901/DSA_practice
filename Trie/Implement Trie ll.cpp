@@ -1,4 +1,4 @@
-https://leetcode.com/problems/implement-trie-prefix-tree/
+https://www.codingninjas.com/studio/problems/implement-trie_1387095?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_tries_videos
 #include <bits/stdc++.h> 
 using namespace std;
 struct Node{
