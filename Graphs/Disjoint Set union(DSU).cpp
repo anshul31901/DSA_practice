@@ -46,3 +46,4 @@ void un( int v,int  u){
     }
     //return a;
 }
+//time complexity for find is O(alfa(n)) ackermans function it is basicaly on average 4;
