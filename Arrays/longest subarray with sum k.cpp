@@ -1,3 +1,5 @@
+//hash using unordered map O(n) complexity 
+
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
