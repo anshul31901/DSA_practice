@@ -1,3 +1,4 @@
+//upper bound index - lowerbound index
 int Solution::findCount(const vector<int> &A, int B) {
     int r=-1;//of element just greater than B
     int l = -1;// of element just smaller than B
