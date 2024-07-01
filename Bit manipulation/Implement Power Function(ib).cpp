@@ -1,4 +1,6 @@
 #define ll long long 
+// if a%b is +ve its the and 
+// but is a%b is negative real ans is b+a%b
 
 int Solution::pow(int x, int n, int d) {
 if(d==1)return 0; 
