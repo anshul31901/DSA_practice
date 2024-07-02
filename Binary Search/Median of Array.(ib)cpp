@@ -1,0 +1,70 @@
+//if we joined the both sorted arrays we come to conclusion that we need to find the element with idx (m+n)/2
+// if odd numbered array what we do keep (n+m+1)/2 elements in our left subarray and return its max value
+// if sum of elements is even we keep half elements in both right and left partition and median is ((max element of left) + (min of right))/2
+// now we just need to find such valid partitions
+// so we binary search on array of lower size ...search to find how many elements should i include from this array so s= 0 and e = n1
+// mid1 is what we calculate and mid2 = (n+m+1)/2 - mid1 indicating how much elements we take from nums2
+//now l1 = right most element of nums1 of left partition 
+// l2 = same for nums2
+// similarly r1 ad r2 are leftmost of right partition of nums 1 and nums2
+// initialize l1 and l2 with int min and r1 nad r2 with int max for edge cases that are if(either no or all elments of array are selected )
+// obv l1<=r1 and l2<=r2
+// but for valid partition we need to check is all elements on left <=right
+// so we check for l1<=r2 and l2<=r1 if its true partition is valid
+// if not we move our mid1 to find right partition 
+// for eg is l1>r2 means shift l1 to left to make it small and r2 to right to make it big so e =mid-1 and vice verca for other case
+//
+
+double Solution::findMedianSortedArrays(const vector<int> &nums1, const vector<int> &nums2) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+        
+        if(nums1.size()>nums2.size())return findMedianSortedArrays(nums2,nums1);
+
+        int n1 = nums1.size();
+        int n2 = nums2.size();
+
+        //numbers are in terms of how many elements we will include of each
+
+        int n = (n1+n2+1)/2;
+
+        int s = 0;
+        int e = n1;
+
+
+        while(s<=e){
+            int mid1 = s+((e-s)>>1);
+
+            int mid2 = n-mid1;
+
+            int l1 = INT_MIN,l2= INT_MIN;
+            int r1 = INT_MAX,r2=INT_MAX;
+
+            if(mid1<n1)r1 = nums1[mid1];
+            if(mid2<n2)r2 = nums2[mid2];
+
+            if(mid1-1>=0)l1 = nums1[mid1-1];
+            if(mid2-1>=0)l2 = nums2[mid2-1];
+
+
+            if(l1<=r2&&l2<=r1){
+                if((n1+n2)&1){
+                    return max(l1,l2);
+                }
+                else{
+                    return double(max(l1,l2)+min(r1,r2))/2.0;
+                }
+            }
+            else if(l1>r2){
+                e=mid1-1;
+            }
+            else s = mid1+1;
+
+
+
+
+        }
+        return 0,0;
+}
