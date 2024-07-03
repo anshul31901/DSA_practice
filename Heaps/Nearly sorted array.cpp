@@ -2,6 +2,8 @@
 //min of k +1 elements on every step
 //create a min Heap keep pushing elements in it
 // if size>k pop element and include in array 
+
+//instead of nlogn complexity we get n log k complexity
 class Solution
 {
     public:
