@@ -80,20 +80,7 @@ int main(){
   }
 
 
-//in leetcode format
-	void un(int a,int b,vector<int>&par,vector<int>&sz){
-	    if(sz[b]>sz[a])swap(a,b);
-	    
-        a = find(a,par,sz);
-        b = find(b,par,sz);
-        if(a!=b){
-            par[b]=a;
-            sz[a]+=sz[b];
-            
-        }
-        return;
-	}
-
   cout<<sum<<endl;
 
 }
+//in leetcode format make a seperate dsu class
