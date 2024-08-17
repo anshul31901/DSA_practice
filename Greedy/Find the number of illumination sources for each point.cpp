@@ -53,7 +53,7 @@ int main(){
   // as they end after top element
   //if start time 
 	for(int i = 0;i<m;i++){
-		while(j<m&&pts[i]>=lamps[j].first){
+		while(j<n&&pts[i]>=lamps[j].first){
 			pq.push(lamps[j]);
 			j++;
 		}
