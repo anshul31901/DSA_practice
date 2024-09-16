@@ -1,0 +1,33 @@
+class Solution {
+public:
+
+    int helper(string a ){
+        int time1 =0;
+        time1 += ((a[4]-'0')+10*(a[3]-'0'));
+        time1 += 60*((a[1]-'0')+10*(a[0]-'0'));
+
+
+        return time1;
+
+
+    }
+    int findMinDifference(vector<string>& v) {
+        int mas = INT_MAX;
+        vector<int>t;
+
+        
+
+        for(int i = 0;i<v.size();i++){
+            t.push_back(helper(v[i]));
+        }
+        sort(t.begin(),t.end());
+        for(int i = 0;i<v.size()-1;i++){
+            mas = min(mas,t[i+1]-t[i]);
+        }        
+      
+        mas = min(mas, 24*60 + t[0]-t[t.size()-1]);
+        return mas;
+
+        
+    }
+};
