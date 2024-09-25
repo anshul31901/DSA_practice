@@ -1,0 +1,39 @@
+// using set 
+class Solution {
+public:
+    int sz(int x){
+        int s = 0;
+
+        while(x>0){
+            s++;
+            x/=10;
+        }
+        return s;
+    }
+    int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+
+        unordered_set<int>prefixes;
+
+
+        for(auto num : arr1){
+
+            while(prefixes.find(num)==prefixes.end()&&num>0){
+                prefixes.insert(num);
+                num/=10;
+            }
+        }
+        int ans = 0;
+
+        for(auto num: arr2){
+
+            while(num>0&&prefixes.find(num)==prefixes.end()){
+                num/=10;
+            }
+            if(num>0){
+                ans = max(ans,sz(num));
+            }
+        }
+        return ans ;
+        
+    }
+};
