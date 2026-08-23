@@ -1,0 +1,89 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+const int MOD = 1e9+7;
+
+bool isValid(int i, int n ){
+
+    return (i>=0 && i<n);
+}
+
+struct project{
+    int st;
+    int ed;
+    long long val;
+};
+
+static bool comp(project &a , project &b){
+    return a.ed<=b.ed;
+}
+
+void solve(int n ){
+
+    vector<string>v(n);
+    for(int i = 0 ; i <n ; i++){
+        cin>>v[i];
+    }
+
+    const int D = 2*n -1;
+
+    vector<vector<bool>>dp(D,vector<bool>(n,0));
+
+    vector<char>best(D);
+
+    //base case
+    best[0]= v[0][0];
+    dp[0][0] = 1;
+
+    for(int d = 1; d<D ; d++){
+        for(int i = 0 ; i <n ; i++){
+
+
+            int prev = d-1;
+
+            bool left = 0;
+
+
+            if(isValid(prev-i,n)&&dp[prev][i]&&v[i][prev-i]==best[prev]){
+                left = 1;
+            }
+
+            bool up = 0;
+
+            if(i>=1){
+
+                int j = prev - (i-1);
+
+                if(isValid(j,n)&&dp[d-1][i-1]&&v[i-1][j]==best[prev]){
+                    up = 1;
+                }
+            }
+
+            dp[d][i] = left||up;
+
+        }
+        char optimal = 'Z'+1;
+
+        for(int i = 0 ; i <n ; i++){
+            if(!dp[d][i])continue;
+            if(isValid(d-i,n)){
+                optimal = min(optimal,v[i][d-i]);
+            }
+            
+        }
+        best[d]=optimal;
+    }
+
+    for(auto c: best)cout<<c;
+
+
+}
+
+
+
+int main() {
+    int n ; 
+    cin>>n;
+    solve(n);
+
+}
